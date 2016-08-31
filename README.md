@@ -25,6 +25,13 @@ Things you may want to cover:
 
 ## Notes
 
+Uses Ruby 2.3.1 with rbenv or rvm
+
 ```
+gem install bundler
+g clone repo_url
+cd
+bundle
+/bin/rails db:seed
 bundle exec rspec
 ```
