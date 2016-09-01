@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :destroy]
+  include ActionController::HttpAuthentication::Token::ControllerMethods
 
+  TOKEN = ENV.fetch("AUTH_TOKEN") 
+
+  before_action :authenticate, only: :destroy
+  before_action :set_user, only: [:show, :destroy]
+ 
   # GET /users
   def index
     @users = User.all
@@ -37,4 +42,13 @@ class UsersController < ApplicationController
     def user_params
       params.require(:data).require(:attributes).permit(:username, :email)
     end
+
+    def authenticate
+      authenticate_or_request_with_http_token do |token, options|
+        ActiveSupport::SecurityUtils.secure_compare(
+          ::Digest::SHA256.hexdigest(token),
+          ::Digest::SHA256.hexdigest(TOKEN)
+        )
+      end
+    end    
 end

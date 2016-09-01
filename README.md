@@ -25,6 +25,12 @@ Things you may want to cover:
 
 ## Notes
 
+Create .env file with:
+
+``` 
+AUTH_TOKEN=your_auth_token
+```
+
 Uses Ruby 2.3.1 with rbenv or rvm
 
 ```

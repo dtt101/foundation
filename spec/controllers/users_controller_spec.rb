@@ -32,7 +32,7 @@ RSpec.describe UsersController, type: :controller do
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # UsersController. Be sure to keep this updated too.
+  # UsersController.
   let(:valid_session) { {} }
 
   describe "GET #index" do
@@ -61,7 +61,6 @@ RSpec.describe UsersController, type: :controller do
         }.to change(User, :count).by(1)
       end
 
-
       it "assigns a newly created user as @user" do
         post :create, params: valid_json_api_attributes, session: valid_session
         expect(assigns(:user)).to be_a(User)
@@ -88,7 +87,16 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe "DELETE #destroy" do
+
+    it "returns a 401 status code if no token provided" do
+      user = User.create! valid_attributes
+      delete :destroy, params: {id: user.to_param}, session: valid_session
+      expect(response.status).to eq(401)
+    end    
+
     it "destroys the requested user" do
+      #  TODO: move secret to env
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials("test_token")
       user = User.create! valid_attributes
       expect {
         delete :destroy, params: {id: user.to_param}, session: valid_session
@@ -96,6 +104,7 @@ RSpec.describe UsersController, type: :controller do
     end
 
     it "returns a 204 status code" do
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials("test_token")
       user = User.create! valid_attributes
       delete :destroy, params: {id: user.to_param}, session: valid_session
       expect(response.status).to eq(204)
