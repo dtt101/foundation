@@ -58,4 +58,5 @@ RSpec.describe User, type: :model do
     subject.password = subject.password_confirmation = "12345"
     expect(subject).to_not be_valid
   end
+
 end
