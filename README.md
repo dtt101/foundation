@@ -27,11 +27,13 @@ Things you may want to cover:
 
 Create .env file with:
 
-``` 
+```
 AUTH_TOKEN=your_auth_token
 ```
 
 Uses Ruby 2.3.1 with rbenv or rvm
+
+Install postgres (for parity with dev and prod) - on a mac use http://postgresapp.com/
 
 ```
 gem install bundler
