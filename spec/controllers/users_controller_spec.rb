@@ -8,7 +8,9 @@ RSpec.describe UsersController, type: :controller do
         type: 'users',
         attributes: {
           username: "foo",
-          email: "foo@exammple.com"
+          email: "foo@exammple.com",
+          password: "password",
+          password_confirmation: "password"
         }
       }
     }    
@@ -20,14 +22,16 @@ RSpec.describe UsersController, type: :controller do
         type: 'users',
         attributes: {
           username: "bar",
-          email: "bar&exammple.com"
+          email: "bar&exammple.com",
+          password: "password",
+          password_confirmation: "password"          
         }
       }
     }    
   }  
 
   let(:valid_attributes) {
-    { username: 'foo', email: 'foo@example.com' }
+    { username: 'foo', email: 'foo@example.com', password: 'foobar', password_confirmation: 'foobar' }
   }
 
   # This should return the minimal set of values that should be in the session
