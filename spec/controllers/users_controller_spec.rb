@@ -13,7 +13,7 @@ RSpec.describe UsersController, type: :controller do
           password_confirmation: "password"
         }
       }
-    }    
+    }
   }
 
   let(:invalid_json_api_attributes) {
@@ -24,11 +24,11 @@ RSpec.describe UsersController, type: :controller do
           username: "bar",
           email: "bar&exammple.com",
           password: "password",
-          password_confirmation: "password"          
+          password_confirmation: "password"
         }
       }
-    }    
-  }  
+    }
+  }
 
   let(:valid_attributes) {
     { username: 'foo', email: 'foo@example.com', password: 'foobar', password_confirmation: 'foobar' }
@@ -96,7 +96,7 @@ RSpec.describe UsersController, type: :controller do
       user = User.create! valid_attributes
       delete :destroy, params: {id: user.to_param}, session: valid_session
       expect(response.status).to eq(401)
-    end    
+    end
 
     it "destroys the requested user" do
       #  TODO: move secret to env
