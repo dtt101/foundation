@@ -40,6 +40,6 @@ gem install bundler
 g clone repo_url
 cd
 bundle
-/bin/rails db:seed
+/bin/rails db:setup
 bundle exec rspec
 ```
