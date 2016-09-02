@@ -43,11 +43,13 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    addressable (2.3.8)
     arel (7.1.1)
     bcrypt (3.1.11)
     builder (3.2.2)
     byebug (9.0.5)
     concurrent-ruby (1.0.2)
+    database_cleaner (1.5.3)
     diff-lcs (1.2.5)
     dotenv (2.1.1)
     dotenv-rails (2.1.1)
@@ -64,6 +66,11 @@ GEM
       activesupport (>= 4.1.0)
     i18n (0.7.0)
     json (1.8.3)
+    json-schema (2.6.2)
+      addressable (~> 2.3.8)
+    json_matchers (0.5.1)
+      activesupport (>= 3.0.0)
+      json-schema (~> 2.6.0)
     jsonapi (0.1.1.beta2)
       json (~> 1.8)
     listen (3.0.8)
@@ -164,8 +171,10 @@ DEPENDENCIES
   active_model_serializers (~> 0.10.0)
   bcrypt (~> 3.1.7)
   byebug
+  database_cleaner
   dotenv-rails
   factory_girl_rails
+  json_matchers
   listen (~> 3.0.5)
   pg
   puma (~> 3.0)
@@ -176,6 +185,9 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
+
+RUBY VERSION
+   ruby 2.3.1p112
 
 BUNDLED WITH
    1.12.5

@@ -1,3 +1,6 @@
+require 'factory_girl_rails'
+require 'database_cleaner'
+require 'support/factory_girl'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
@@ -31,4 +34,16 @@ RSpec.configure do |config|
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
   config.filter_run_when_matching :focus
+
+  # setup database_cleaner to ensure clean DB before test run
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
 end
