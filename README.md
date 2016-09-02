@@ -1,45 +1,45 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Foundation is an api for users
 
-Things you may want to cover:
+## Development setup
 
-* Ruby version
+Requires:
 
-* System dependencies
+ * Ruby 2.3.1
+ * Postgres (Easy install on Mac using http://postgresapp.com/)
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-## Notes
-
-Create .env file with:
-
-```
-AUTH_TOKEN=your_auth_token
-```
-
-Uses Ruby 2.3.1 with rbenv or rvm
-
-Install postgres (for parity with dev and prod) - on a mac use http://postgresapp.com/
+Steps (note `AUTH_TOKEN` can be set to any value)
 
 ```
 gem install bundler
-g clone repo_url
-cd
+git clone https://github.com/dtt101/foundation.git
+cd foundation
 bundle
-/bin/rails db:setup
+echo $'AUTH_TOKEN=secret_token\nPORT=3000' > .env
+bin/rails db:setup
+```
+
+The application is setup with seed data
+
+## Development
+
+```
+bin/rails s
+```
+
+Confirm working by visiting `http://localhost:3000/users` to see list of users
+
+## Test
+
+```
 bundle exec rspec
 ```
+
+## Production
+
+The application is deployed to `https://dtt-foundation.herokuapp.com`
+
+## Routes
+
+See `spec/requests/users_spec.rb` for routes and usage.
