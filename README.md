@@ -42,4 +42,9 @@ The application is deployed to `https://dtt-foundation.herokuapp.com`
 
 ## Routes
 
-See `spec/requests/users_spec.rb` for routes and usage.
+ * `GET /users` - lists all users
+ * `GET /users/{id}` - shows details for user identified by id
+ * `POST /users` - create a new user (password must be at least 6 characters)
+ * `DELETE /users/{id}` - removes user identified by id. Requires token passed in header.
+
+See `spec/requests/users_spec.rb` for detailed usage examples.
